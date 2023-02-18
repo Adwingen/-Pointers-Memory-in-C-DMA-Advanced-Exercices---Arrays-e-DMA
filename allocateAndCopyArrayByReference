@@ -1,0 +1,48 @@
+#define _CRT_SECURE_NO_WARNINGS
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Implementing Remove Operation //
+
+
+void printArr(int* arr, int size)
+{
+	int i;
+	for (i = 0; i < size; i++)
+		printf("%d ", arr[i]);
+	printf("\n\n");
+}
+
+void allocateAndCopyArray(int* original, int sizeOriginal, int** target)
+{
+	int i;
+	*target = (int*)malloc(sizeOriginal * sizeof(int));
+	if (*target)
+	{
+		for (i = 0; i < sizeOriginal; i++)
+			(*target)[i] = original[i];
+	}
+}
+
+int main()
+{
+	int size;
+	int arrOriginal[100];
+	int i;
+	int* copiedArr;
+	puts("Define the size of the array");
+	scanf("%d", &size);
+	puts("Puts the elements in the array");
+	for (i = 0; i < size; i++)
+		scanf("%d", &arrOriginal[i]);
+
+	allocateAndCopyArray(arrOriginal, size, &copiedArr);
+
+	printArr(copiedArr, size);
+
+	free(copiedArr);
+	
+	return 0;
+}
